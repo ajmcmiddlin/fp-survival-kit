@@ -35,23 +35,24 @@ const fToC = (f) => (f - 32) * 5 / 9
 
 ::: {.notes}
 - Abstract functionality independent of values.
+- DRY --- LOC correlates with number of bugs
 :::
 
 ##
 
-```{.typescript}
-const gt42 = (ns: Array<number>): Array<number> => {
-  let r: Array<number> = [];
-  ns.forEach((n) => n > 42 && r.push(n));
+<pre class="haskell"><code data-trim data-noescape>
+<span class="fragment fade-out" data-fragment-index="1">const gt42 = (ns: Array&lt;number&gt;): Array&lt;number&gt; => {
+  let r: Array&lt;number&gt; = [];
+  ns.forEach((n) => </span>n > 42<span class="fragment fade-out" data-fragment-index="1"> && r.push(n));
   return r;
-};
+};</span>
 
-const odd = (ns: Array<number>): Array<number> => {
-  let r: Array<number> = [];
-  ns.forEach((n) => n % 2 !== 0 && r.push(n));
+<span class="fragment fade-out" data-fragment-index="1">const odd = (ns: Array&lt;number&gt;): Array&lt;number&gt; => {
+  let r: Array&lt;number&gt; = [];
+  ns.forEach((n) => </span>n % 2 !== 0<span class="fragment fade-out" data-fragment-index="1"> && r.push(n));
   return r;
 };
-```
+</span></code></pre>
 
 ##
 
