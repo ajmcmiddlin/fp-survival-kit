@@ -17,14 +17,28 @@
 - Whole program type checked.
 - Functor + Applicative + Monad
 
+## Newtypes
+
+##
+
+```{.ts}
+export type OrgId = string & { readonly __tag: unique symbol };
+```
+
+## fp-ts
+
+- Functions to treat core JS types as immutable.
+- Common FP data types.
+- Typeclasses (kind of).
+
 ## Sums and products
 
 ##
 
 ```{.ts}
 type Person = {
-  name : string;
-  age : number;
+  name : Name;
+  age : Age;
 }
 ```
 
@@ -39,16 +53,6 @@ data Maybe a =
 :::{.notes}
 - If you just have this, you can at least replace nulls
 :::
-
-##
-
-```{.ts}
-const [person, setPerson] = React.useState<Option<Person>>(O.none);
-
-// Elsewhere...
-const jsonResult = O.fromNullable(getSerializedPerson());
-setPerson(O.map((j) => deserializePerson(j)))
-```
 
 ##
 
@@ -134,12 +138,24 @@ export const fold = <E, A, B>(
 };
 ```
 
-## Functor + Applicative + Monad
+## Functor
 
 ::: {.notes}
 - Found for front end stuff that this is generally enough.
 - Traversable is also a nice to have.
 :::
+
+##
+
+```{.ts}
+const [person, setPerson] = React.useState<Option<Person>>(O.none);
+
+// Elsewhere...
+const jsonResult = O.fromNullable(getSerializedPerson());
+setPerson(O.map((j) => deserializePerson(j)))
+```
+
+## Applicative
 
 ##
 
@@ -158,8 +174,10 @@ const foo = () =>
 const ageDifference = (p1 : Person) => (p2 : Person) => Math.abs(p1.age - p2.age);
 
 const foo = () =>
-  pipe(O.some(ageDifference), p1, p2)
+  pipe(O.some(ageDifference), O.ap(p1), O.ap(p2))
 ```
+
+## Monad
 
 ##
 
@@ -172,6 +190,10 @@ if (p) {
   }
 }
 ```
+
+:::{.notes}
+Promise chaining often cited.
+:::
 
 ##
 
