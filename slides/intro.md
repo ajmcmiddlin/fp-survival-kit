@@ -1,14 +1,5 @@
 # Survival
 
-## Agenda
-
-- Why?
-- Features
-- TypeScript
-- Alternatives
-
-## Why?
-
 ::: {.notes}
 - Found FP.
 - QFPL --- lots of Haskell.
