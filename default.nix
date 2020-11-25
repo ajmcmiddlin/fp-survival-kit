@@ -30,7 +30,9 @@ in
       cat \
           $src/slides/title.md \
           $src/slides/intro.md \
-          $src/slides/features.md \
+          $src/slides/referential.md \
+          $src/slides/higher-order.md \
+          $src/slides/types.md \
           $src/slides/references.md \
           > slides.md
       pandoc -i -t revealjs --variable=revealjs-url:$out/reveal.js --slide-level=2 --template=$src/template.revealjs --variable=transition:none --no-highlight -s slides.md -o index.html
