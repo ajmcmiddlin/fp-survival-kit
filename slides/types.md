@@ -125,15 +125,15 @@ export const fold = <E, A, B>(
   onError: (e: E) => B,
   onSuccess: (a: A) => B
 ) => (r: Result<E, A>): B => {
-  switch (t._tag) {
+  switch (r._tag) {
     case "NotStarted":
       return onNotStarted();
     case "Pending":
       return onPending();
     case "Error":
-      return onError(t.error);
+      return onError(r.error);
     case "Success":
-      return onSuccess(t.success);
+      return onSuccess(r.success);
   }
 };
 ```
@@ -165,7 +165,7 @@ const ageDifference = (p1 : Person, p2 : Person) => Math.abs(p1.age - p2.age);
 const foo = () =>
   (p1 !== null && p2 !== null)
   ? ageDifference(p1, p2)
-  : O.none
+  : null
 ```
 
 ##
@@ -198,7 +198,7 @@ Promise chaining often cited.
 ##
 
 ```{.ts}
-const discount = pipe(p, O.chain(getOrderHistory), O.chain(O.getDiscount))
+const discount = pipe(p, O.chain(getOrderHistory), O.chain(getDiscount))
 ```
 
 :::{.notes}
